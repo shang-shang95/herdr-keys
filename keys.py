@@ -14,7 +14,7 @@ import unicodedata
 
 BIN = os.environ.get("HERDR_BIN_PATH") or shutil.which("herdr")
 CONFIG = os.path.expanduser("~/.config/herdr/config.toml")
-STATE = os.environ.get("HERDR_PLUGIN_STATE_DIR") or os.path.expanduser("~/.local/state/herdr/plugins/shang.keys")
+STATE = os.environ.get("HERDR_PLUGIN_STATE_DIR") or os.path.expanduser("~/.local/state/herdr/plugins/shang-shang95.herdr-keys")
 TAB = os.environ.get("HERDR_TAB_ID", "")
 PANE = os.environ.get("HERDR_PANE_ID")
 PIDFILE = os.path.join(STATE, f"pane-{TAB}.pid")

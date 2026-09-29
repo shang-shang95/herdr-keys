@@ -80,13 +80,13 @@ herdr plugin install shang-shang95/herdr-keys
 [[keys.command]]
 key = "prefix+i"
 type = "shell"
-command = "herdr plugin action invoke open --plugin shang.keys"
+command = "herdr plugin action invoke open --plugin shang-shang95.herdr-keys"
 description = "キー一覧を右に開く"
 
 [[keys.command]]
 key = "prefix+a"
 type = "shell"
-command = "herdr plugin action invoke ask --plugin shang.keys"
+command = "herdr plugin action invoke ask --plugin shang-shang95.herdr-keys"
 description = "keys agent を開く"
 ```
 
@@ -127,7 +127,7 @@ return {
 - keys agent が使える道具はファイルの読み取り (Read) だけです。ファイルの編集・コマンドの実行・git の操作はしません。
 - Claude Code のユーザー設定 (フック・プラグイン・MCP) は読み込まず、claude.ai のログインで動きます。
   - `ANTHROPIC_API_KEY` が設定されていても使いません (API の従量課金にならないようにしています)。
-- 初回だけ、状態ディレクトリ (`~/.local/state/herdr/plugins/shang.keys`) を信頼するかの確認が出ます。
+- 初回だけ、状態ディレクトリ (`~/.local/state/herdr/plugins/shang-shang95.herdr-keys`) を信頼するかの確認が出ます。
 - タブごとに Claude Code が 1 つずつ起動します。待機中はトークンを使いませんが、メモリは使います。
 
 ## 仕組み
@@ -143,7 +143,7 @@ return {
 | `ask.sh` | keys agent (`claude --tools Read`) の起動 |
 | `nvim/herdr-keys.lua` | Neovim 側。起動時と avante の読み込み時にキーマップを書き出して SIGUSR1、終了時に消して SIGUSR1 |
 
-状態は `~/.local/state/herdr/plugins/shang.keys/` に置かれます。
+状態は `~/.local/state/herdr/plugins/shang-shang95.herdr-keys/` に置かれます。
 
 - `pane-<タブ>.pid`: 一覧のプロセス
 - `nvim-<ペイン>.json`: Neovim が書き出したキーマップ

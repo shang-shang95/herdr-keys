@@ -1,7 +1,7 @@
--- herdr 内なら、この Neovim のペインにフォーカスしている間、同じタブの右のキー表示ペイン (herdr プラグイン shang.keys) を
+-- herdr 内なら、この Neovim のペインにフォーカスしている間、同じタブの右のキー表示ペイン (herdr プラグイン shang-shang95.herdr-keys) を
 -- この Neovim の実際のキーマップに切り替え、終了時に戻す
 if vim.env.HERDR_TAB_ID and vim.env.HERDR_PANE_ID then
-  local dir = (vim.env.XDG_STATE_HOME or vim.fn.expand("~/.local/state")) .. "/herdr/plugins/shang.keys/"
+  local dir = (vim.env.XDG_STATE_HOME or vim.fn.expand("~/.local/state")) .. "/herdr/plugins/shang-shang95.herdr-keys/"
   local file = dir .. "nvim-" .. vim.env.HERDR_PANE_ID .. ".json"
   local function notify()
     local f = io.open(dir .. "pane-" .. vim.env.HERDR_TAB_ID .. ".pid")

@@ -22,7 +22,7 @@ for tab in $tabs; do
     # 分割元: そのタブのフォーカス中ペイン (無ければ先頭)
     target=$(find "$tab" '.focused')
     [ -n "$target" ] || target=$(find "$tab" true)
-    id=$("$h" plugin pane open --plugin shang.keys --entrypoint keys --target-pane "$target" \
+    id=$("$h" plugin pane open --plugin shang-shang95.herdr-keys --entrypoint keys --target-pane "$target" \
       --placement split --direction right --no-focus | jq -r '.result.plugin_pane.pane.pane_id')
     # 分割比 0.5 -> 0.85 (幅約15%)
     "$h" pane resize --pane "$id" --direction right --amount 0.35 >/dev/null
@@ -30,7 +30,7 @@ for tab in $tabs; do
   if [ "$1" != keys ] && [ -z "$(find "$tab" '.label == "keys agent"')" ]; then
     # キー表示ペインの下に開く (無ければフォーカス中ペインの下)
     [ -n "$id" ] || id=$(find "$tab" '.focused')
-    "$h" plugin pane open --plugin shang.keys --entrypoint ask --target-pane "$id" \
+    "$h" plugin pane open --plugin shang-shang95.herdr-keys --entrypoint ask --target-pane "$id" \
       --placement split --direction down --no-focus >/dev/null
   fi
 done
