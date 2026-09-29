@@ -1,0 +1,39 @@
+id = "shang.keys"
+name = "Keys cheatsheet"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Show herdr keybindings in a right-side pane"
+platforms = ["linux"]
+
+[[startup]]
+command = ["sh", "startup.sh"]
+
+[[actions]]
+id = "open"
+title = "Open keys pane"
+contexts = ["workspace"]
+command = ["sh", "startup.sh", "keys"]
+
+[[actions]]
+id = "ask"
+title = "Open keys agent"
+contexts = ["workspace"]
+command = ["sh", "startup.sh", "ask"]
+
+[[panes]]
+id = "keys"
+title = "herdr keys"
+command = ["python3", "keys.py"]
+
+[[events]]
+on = "tab.created"
+command = ["sh", "startup.sh"]
+
+[[panes]]
+id = "ask"
+title = "keys agent"
+command = ["sh", "ask.sh"]
+
+[[events]]
+on = "pane.focused"
+command = ["sh", "focus.sh"]
