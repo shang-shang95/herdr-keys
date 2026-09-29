@@ -8,6 +8,15 @@
 
 キーは実際の設定から読み取るので、設定を変えれば表示も変わります。説明は日本語です。
 
+## 前提
+
+- OS: Linux または WSL
+- ソフトウェア: [herdr](https://herdr.dev) と [Neovim](https://neovim.io)
+
+作者は WSL 上で、ターミナルに WezTerm、Neovim に LazyVim と avante.nvim を入れた環境で使っています。これと違う環境では、表示が崩れたり、一部が動かなかったりするかもしれません。修正の Pull Request をもらえると嬉しいです。
+
+keys agent は、上のキー一覧に表示している内容をもとに、聞かれたことに答えるだけです。使える権限をファイルの読み取り (Read) に絞っているので、ファイルの編集やコマンドの実行はできませんし、しません。
+
 ```
 ┌─────────────────────────────┬─ herdr keys ──────────────┐
 │                             │ prefix = ctrl+b           │
@@ -57,7 +66,7 @@ LazyVim
 
 ## 必要なもの
 
-- herdr 0.9 以上 (Linux)
+- herdr 0.9 以上 (Linux または WSL)
 - python3 3.11 以上、`less`、`strings` (binutils)、`jq`
 - editor keys を使う場合: Neovim 0.10 以上。LazyVim / avante.nvim 向けに作っていますが、どちらも無くても動きます (そのキーが出ないだけです)
 - keys agent を使う場合: [Claude Code](https://claude.com/claude-code) (`claude` コマンド) と claude.ai へのログイン
@@ -124,7 +133,7 @@ return {
 
 ### keys agent にできること
 
-- keys agent が使える道具はファイルの読み取り (Read) だけです。ファイルの編集・コマンドの実行・git の操作はしません。
+- keys agent が使える道具はファイルの読み取り (Read) だけです。ファイルの編集・コマンドの実行・git の操作はできません。頼まれても、手順を説明するだけです。
 - Claude Code のユーザー設定 (フック・プラグイン・MCP) は読み込まず、claude.ai のログインで動きます。
   - `ANTHROPIC_API_KEY` が設定されていても使いません (API の従量課金にならないようにしています)。
 - 初回だけ、状態ディレクトリ (`~/.local/state/herdr/plugins/shang-shang95.herdr-keys`) を信頼するかの確認が出ます。
