@@ -1,9 +1,9 @@
 # herdr-keys
 
-[herdr](https://herdr.dev) のタブの右に、いま使えるキーの一覧と、キーについて質問できる AI (Claude Code) を常に表示するプラグインです。
+[herdr](https://herdr.dev) のタブの右に、キーバインドの一覧と、それについて質問できるAIエージェントを常に表示するプラグインです。
 
 - **herdr keys**: シェルなどにフォーカス中は herdr のキー
-- **editor keys**: Neovim にフォーカス中はその Neovim のキー (Vim / Avante / NeoVim / LazyVim)。Vim を始めるのに要る主要なキーに絞って表示
+- **editor keys**: Neovim にフォーカス中はその Neovim のキー (Vim / Avante / NeoVim / LazyVim)。Vim を始めるのに要る主要なキーだけを出す
 - **keys agent**: 「〇〇をするには？」と聞くと、表示中の一覧から押すキーを答える
 
 キーは実際の設定から読み取ります。説明は日本語です。
@@ -15,7 +15,7 @@
 - OS: Linux または WSL
 - ソフトウェア: [herdr](https://herdr.dev) と [Neovim](https://neovim.io)
 
-作者の環境は WSL + WezTerm + LazyVim + avante.nvim です。他の環境では表示が崩れたり動かない部分があるかもしれません。修正の Pull Request を歓迎します。
+作者の環境は WSL + WezTerm + LazyVim + avante.nvim です。他の環境では表示が崩れたり、一部が動かなかったりするかもしれません。修正の Pull Request を歓迎します。
 
 keys agent は一覧をもとに答えるだけです。権限はファイルの読み取り (Read) のみで、ファイルの編集やコマンドの実行はできません。
 
@@ -34,11 +34,11 @@ keys agent は一覧をもとに答えるだけです。権限はファイルの
 herdr plugin install shang-shang95/herdr-keys
 ```
 
-次の herdr 起動時から、各タブ (新しいタブも) に自動で開きます。
+次の herdr 起動時から、キー一覧と keys agent が各タブ (新しいタブも) に自動で開きます。
 
 ### 2. キーバインド (任意)
 
-閉じたあと開き直すキーです。`~/.config/herdr/config.toml` に追加します。
+キー一覧や keys agent を閉じたあと、開き直すためのキーです。`~/.config/herdr/config.toml` に追加します。
 
 ```toml
 [[keys.command]]
@@ -89,13 +89,11 @@ return {
 <img src="docs/agent.png" alt="keys agent が行選択から avante での修正、差分の採用までの手順を答えている画面" width="360">
 
 - 表示中の一覧を読んで、押すキーを答えます。
-- 使える道具は Read のみです。編集・コマンド実行・git 操作は頼まれても手順の説明だけです。
+- 権限はファイルの読み取りのみです。このペイン内では編集・コマンド実行・git 操作は頼まれてもできません。
 - Claude Code のユーザー設定 (フック・プラグイン・MCP) は読み込みません。
-- 初回だけ、状態ディレクトリを信頼するかの確認が出ます。
+- 初回だけ、作業フォルダ (`~/.local/state/herdr/plugins/shang-shang95.herdr-keys/`) を信頼するかの確認が出ます。
 
 ## 仕組み
-
-変化があったときだけ描き直します (ポーリングなし)。
 
 | ファイル | 役割 |
 |---|---|
@@ -106,7 +104,7 @@ return {
 | `ask.sh` | keys agent (`claude --tools Read`) の起動 |
 | `nvim/herdr-keys.lua` | Neovim のキーマップを書き出して SIGUSR1 を送る |
 
-状態は `~/.local/state/herdr/plugins/shang-shang95.herdr-keys/` に置きます。
+表示中の内容や Neovim のキーマップなどは `~/.local/state/herdr/plugins/shang-shang95.herdr-keys/` に保存します。
 
 ## カスタマイズ
 
