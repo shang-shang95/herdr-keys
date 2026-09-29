@@ -3,7 +3,7 @@
 [herdr](https://herdr.dev) のタブの右に、いま使えるキーの一覧と、キーについて質問できる AI (Claude Code) を常に表示するプラグインです。
 
 - **herdr keys**: シェルなどにフォーカス中は herdr のキー
-- **editor keys**: Neovim にフォーカス中はその Neovim のキー (Vim / Avante / NeoVim / LazyVim)
+- **editor keys**: Neovim にフォーカス中はその Neovim のキー (Vim / Avante / NeoVim / LazyVim)。Vim を始めるのに要る主要なキーに絞って表示
 - **keys agent**: 「〇〇をするには？」と聞くと、表示中の一覧から押すキーを答える
 
 キーは実際の設定から読み取ります。説明は日本語です。
@@ -60,6 +60,13 @@ description = "keys agent を開く"
 
 [`nvim/herdr-keys.lua`](nvim/herdr-keys.lua) を Neovim の設定に追加します (LazyVim なら `lua/config/autocmds.lua` の末尾)。
 
+> [!NOTE]
+> LazyVim を前提にした作りですが、素の Neovim でも使えるはずです。LazyVim を使っていない場合は、Claude Code などのエージェントにこのリポジトリを参照させて、自分の設定に合わせて直してもらってください。
+>
+> ```
+> https://github.com/shang-shang95/herdr-keys を参照して、LazyVim を使っていない私の Neovim の設定でも editor keys が表示されるように直して
+> ```
+
 ### 4. avante.nvim の選択範囲のキー (任意)
 
 LazyVim の avante extra は `<leader>aa` / `<leader>ae` をノーマルモードにしか割り当てません。範囲選択して使うには次を追加します。
@@ -78,6 +85,8 @@ return {
 ```
 
 ## keys agent にできること
+
+<img src="docs/agent.png" alt="keys agent が行選択から avante での修正、差分の採用までの手順を答えている画面" width="360">
 
 - 表示中の一覧を読んで、押すキーを答えます。
 - 使える道具は Read のみです。編集・コマンド実行・git 操作は頼まれても手順の説明だけです。
